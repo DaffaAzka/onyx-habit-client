@@ -2,6 +2,7 @@ import { Outlet, redirect, useNavigate } from "react-router";
 import Navbar from "@/components/blocks/navbar";
 import type { Route } from "../../+types/root";
 import { useEffect } from "react";
+import { authAPI } from "@/lib/api/auth";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -11,6 +12,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function clientLoader() {
+  await authAPI.check();
   const token = localStorage.getItem("token");
   if (!token) {
     throw redirect("/sign-in");

@@ -25,4 +25,8 @@ export const authAPI = {
 
     return response.data.data!;
   },
+
+  check: async () => {
+    await api.get("/auth/check");
+  },
 };
