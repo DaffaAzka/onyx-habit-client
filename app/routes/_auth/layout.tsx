@@ -1,6 +1,7 @@
-import { Outlet, redirect } from "react-router";
-import type { Route } from "./+types/layout";
+import { Outlet, redirect, useNavigate } from "react-router";
 import Navbar from "@/components/blocks/navbar";
+import type { Route } from "../../+types/root";
+import { useEffect } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -11,16 +12,15 @@ export function meta({}: Route.MetaArgs) {
 
 export async function clientLoader() {
   const token = localStorage.getItem("token");
-  if (token) {
-    throw redirect("/home");
+  if (!token) {
+    throw redirect("/sign-in");
   }
   return null;
 }
 
-export default function GuestLayout() {
+export default function AuthLayout() {
   return (
     <>
-      <Navbar />
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         <Outlet />
       </div>

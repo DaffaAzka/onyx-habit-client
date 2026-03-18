@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { Link, useLocation } from "react-router";
 
 const navLinks = [
   // { label: "Home", href: "/" },
@@ -15,16 +16,17 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("/");
+  const location = useLocation();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center gap-2 font-semibold text-foreground hover:opacity-80 transition-opacity">
           <Zap className="h-5 w-5 text-primary" />
           <span>Onyx Tracker</span>
-        </a>
+        </Link>
 
         {/* <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
@@ -44,10 +46,23 @@ export default function Navbar() {
         </nav> */}
 
         <div className="hidden md:flex items-center gap-2">
-          <Button variant="ghost" size="sm">
-            Sign In
-          </Button>
-          <Button size="sm">Get Started</Button>
+          <Link to={"/sign-in"}>
+            <Button
+              variant={location.pathname === "/sign-in" ? "default" : "ghost"}
+              size="sm">
+              Sign In
+            </Button>
+          </Link>
+
+          <Link to={"/get-started"}>
+            <Button
+              variant={
+                location.pathname === "/get-started" ? "default" : "ghost"
+              }
+              size="sm">
+              Get Started
+            </Button>
+          </Link>
         </div>
 
         <Sheet open={open} onOpenChange={setOpen}>
@@ -87,12 +102,14 @@ export default function Navbar() {
               ))}
             </nav> */}
 
-            <Separator className="my-6" />
+            {/* <Separator className="my-6" /> */}
 
             <div className="flex flex-col gap-2">
-              <Button variant="outline" className="w-full">
-                Sign In
-              </Button>
+              <Link to={"/sign-in"}>
+                <Button variant="outline" className="w-full">
+                  Sign In
+                </Button>
+              </Link>
               <Button className="w-full">Get Started</Button>
             </div>
           </SheetContent>

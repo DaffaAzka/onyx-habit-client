@@ -38,3 +38,13 @@ api.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+api.interceptors.response.use(
+  (response) => {
+    if (typeof response.data !== "object" || response.data === null) {
+      return Promise.reject(new Error(response.data ?? "Unknown error"));
+    }
+    return response;
+  },
+  (error) => Promise.reject(error),
+);

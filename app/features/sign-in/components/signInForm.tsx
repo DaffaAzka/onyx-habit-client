@@ -17,6 +17,8 @@ import useSignIn from "../hooks/useSignIn";
 import React, { useState } from "react";
 import LoadingButton from "@/components/blocks/loadingButton";
 
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
 export default function SignInForm() {
   const { loading, error, signIn } = useSignIn();
   const [form, setForm] = useState({
@@ -31,7 +33,7 @@ export default function SignInForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="w-full max-w-sm">
+      <form onSubmit={handleSubmit} className="w-full max-w-lg">
         <Card>
           <CardHeader>
             <CardTitle>Sign in to your account</CardTitle>
@@ -41,7 +43,11 @@ export default function SignInForm() {
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-6">
-              {error && <p>{error}</p>}
+              {error && (
+                <Alert variant="destructive" className="bg-red-100">
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -75,8 +81,8 @@ export default function SignInForm() {
           <CardFooter className="flex-col gap-2">
             <LoadingButton loading={loading} text="Sign In" />
             <Link to="/get-started">
-              <p>
-                Don't have an account?{" "}
+              <p className="flex flex-row gap-1">
+                Don't have an account?
                 <span className="hover:underline">Sign Up</span>
               </p>
             </Link>
