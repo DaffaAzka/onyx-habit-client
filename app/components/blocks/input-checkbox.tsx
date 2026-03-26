@@ -1,19 +1,19 @@
-// components/blocks/input-checkbox.tsx
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface InputCheckboxProps {
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
-  className?: string;
-}
 
 export default function InputCheckbox({
   checked: controlledChecked,
+  disabled = false,
   onChange,
   className,
-}: InputCheckboxProps) {
+}: {
+  checked?: boolean;
+  disabled?: boolean
+  onChange?: (checked: boolean) => void;
+  className?: string;
+}) {
   const [internalChecked, setInternalChecked] = useState(false);
 
   const isChecked = controlledChecked ?? internalChecked;
@@ -34,7 +34,9 @@ export default function InputCheckbox({
           "bg-[#1e2235] border-[#1e2235]"
         : "bg-transparent border-muted-foreground/40",
         className,
-      )}>
+      )}
+      disabled={disabled}
+      >
       {isChecked && <Check className="w-4 h-4 text-white" strokeWidth={3} />}
     </button>
   );

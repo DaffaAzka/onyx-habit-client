@@ -5,6 +5,10 @@ export interface HabitLog {
   note?: string;
 }
 
+export interface HabitLogGroupedByDate {
+  [date: string]: HabitLog[];
+}
+
 export interface CreateBody {
   habitId: string;
   status: StatusHabit;

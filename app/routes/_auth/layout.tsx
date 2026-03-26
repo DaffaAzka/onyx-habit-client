@@ -3,6 +3,7 @@ import Navbar from "@/components/blocks/navbar";
 import type { Route } from "../../+types/root";
 import { useEffect } from "react";
 import { authAPI } from "@/lib/api/auth";
+import AuthBar from "@/components/blocks/authBar";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -24,6 +25,7 @@ export default function AuthLayout() {
   return (
     <>
       <div className="flex flex-1 flex-col gap-4 p-4">
+        <AuthBar />
         <Outlet />
       </div>
     </>

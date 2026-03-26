@@ -10,20 +10,25 @@ import {
 import { useHabitToday } from "../hooks/useHabitToday";
 import useHabitLogCreate from "../hooks/useHabitLogCreate";
 import { StatusHabit } from "@/types/habit_log";
+import { DynamicIcon } from "@/components/blocks/dynamicIcon";
 
 export default function HabitList() {
   const { data, loading, error, refresh } = useHabitToday();
-  const { create } = useHabitLogCreate();
+  const { create, loading: loadingCreate } = useHabitLogCreate();
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
       {data.map((e) => {
         return (
-          <Card>
-            <CardContent className="flex flex-row justify-between">
-              {e.name}
+          <Card className="py-3">
+            <CardContent className="flex flex-row justify-between items-center">
+              <div className="flex flex-row gap-2 items-center">
+                <DynamicIcon iconName={e.icon} color={e.color} />
+                <p className="tracking-wide text-base font-medium">{e.name}</p>
+              </div>
               <InputCheckbox
                 checked={e.isLog}
+                disabled={loading}
                 onChange={(val) => {
                   console.log("clicked");
                   create(
@@ -41,6 +46,6 @@ export default function HabitList() {
           </Card>
         );
       })}
-    </>
+    </div>
   );
 }

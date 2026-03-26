@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-4">
+      <div className="grid grid-cols-1 lg:grid-cols-4  gap-4">
         <HabitCard />
         <div className="lg:col-span-3">
           <HabitList />

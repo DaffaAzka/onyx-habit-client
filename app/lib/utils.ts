@@ -24,3 +24,8 @@ export function getUserFromLocalStorage(): User | undefined {
     return undefined;
   }
 }
+
+export function getDay() {
+  const date = new Date();
+  return date;
+}
