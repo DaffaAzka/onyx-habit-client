@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import HabitCard from "@/features/home/components/HabitCard";
+import HabitList from "@/features/home/components/HabitList";
 import type { User } from "@/types/user";
 import { Link, useLoaderData } from "react-router";
 
@@ -17,7 +18,7 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-4">
         <HabitCard />
         <div className="lg:col-span-3">
-          
+          <HabitList />
         </div>
       </div>
     </>

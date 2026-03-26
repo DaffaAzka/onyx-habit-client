@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import InputForm from "@/components/blocks/input-form";
 import { Field, FieldLabel } from "@/components/ui/field";
 import LoadingButton from "@/components/blocks/loadingButton";
-import useCreateHabit from "../hooks/useCreateHabit";
+import useHabitCreate from "../hooks/useHabitCreate";
 import { toIconName } from "@/lib/utils";
 
 export default function ActionModal({
@@ -27,7 +27,7 @@ export default function ActionModal({
   onClose: () => void;
   onSuccess: () => void;
 }) {
-  const { loading, error, create } = useCreateHabit();
+  const { loading, error, create } = useHabitCreate();
 
   const [form, setForm] = useState({
     icon: "",

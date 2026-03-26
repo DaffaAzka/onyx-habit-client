@@ -2,7 +2,7 @@ import { habitAPI } from "@/lib/api/habit";
 import type { CreateBody } from "@/types/habit";
 import { useState } from "react";
 
-export default function useCreateHabit() {
+export default function useHabitCreate() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
