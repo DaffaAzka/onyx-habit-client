@@ -43,3 +43,6 @@ export const groupByDate = (logs: HabitLog[]): Record<string, number> => {
     {} as Record<string, number>,
   );
 };
+
+export const inRange = (n: number, min: number, max: number) => n >= min && n <= max;
+
