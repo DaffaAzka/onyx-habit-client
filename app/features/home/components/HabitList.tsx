@@ -30,7 +30,7 @@ export default function HabitList({
       <div className="flex flex-col gap-4">
         {data.map((e) => {
           return (
-            <Card className="py-3">
+            <Card className="py-3" key={e.id}>
               <CardContent className="flex flex-row justify-between items-center">
                 <div className="flex flex-row gap-2 items-center">
                   <DynamicIcon iconName={e.icon} color={e.color} />

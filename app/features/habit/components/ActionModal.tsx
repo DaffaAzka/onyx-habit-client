@@ -168,6 +168,12 @@ export default function ActionModal({
               <LoadingButton loading={loading} text="Confirm" />
             </>
           )}
+
+          {(action === Action.CREATE || action === Action.UPDATE) && (
+            <>
+              <LoadingButton loading={loading} text="Continue" />
+            </>
+          )}
         </form>
       </DialogContent>
     </Dialog>
